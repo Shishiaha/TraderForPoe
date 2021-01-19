@@ -110,7 +110,7 @@ namespace TraderForPoe.Windows
 
             if ((w / h) < 1.35)
             {
-                this.Top = y + (h * 0.094);
+                this.Top = y + (h * 0.064);
 
                 this.Left = x + (w * 0.011);
 
@@ -120,7 +120,7 @@ namespace TraderForPoe.Windows
             }
             else if ((w / h) < 1.9)
             {
-                this.Top = y + (h * 0.094);
+                this.Top = y + (h * 0.064);
 
                 this.Left = x + (w * 0.0088);
 
@@ -130,7 +130,7 @@ namespace TraderForPoe.Windows
             }
             else if ((w / h) < 1.99)
             {
-                this.Top = y + (h * 0.097);
+                this.Top = y + (h * 0.067);
 
                 this.Left = x + (w * 0.008);
 
@@ -142,7 +142,7 @@ namespace TraderForPoe.Windows
             else if ((w / h) < 2.3)
             {
 
-                this.Top = y + (h * 0.097);
+                this.Top = y + (h * 0.067);
 
                 this.Left = x + (w * 0.007);
 
@@ -153,7 +153,7 @@ namespace TraderForPoe.Windows
 
             else if ((w / h) < 2.58)
             {
-                this.Top = y + (h * 0.096);
+                this.Top = y + (h * 0.066);
 
                 this.Left = x + (w * 0.006);
 
@@ -165,7 +165,7 @@ namespace TraderForPoe.Windows
 
             else if ((w / h) < 2.8)
             {
-                this.Top = y + (h * 0.0959);
+                this.Top = y + (h * 0.0659);
 
                 this.Left = x + (w * 0.0055);
 
@@ -177,7 +177,7 @@ namespace TraderForPoe.Windows
 
             else if ((w / h) < 3.1)
             {
-                this.Top = y + (h * 0.0955);
+                this.Top = y + (h * 0.0655);
 
                 this.Left = x + (w * 0.005);
 
@@ -188,7 +188,7 @@ namespace TraderForPoe.Windows
 
             else
             {
-                this.Top = y + (h * 0.094);
+                this.Top = y + (h * 0.064);
 
                 this.Left = x + (w * 0.004);
 
