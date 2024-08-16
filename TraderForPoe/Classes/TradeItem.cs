@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 
 namespace TraderForPoe
@@ -97,10 +99,56 @@ namespace TraderForPoe
         Regex poeTradeUnpricedRegex = new Regex("@(.*) (.*): Hi, I would like to buy your (.*) in (.*) [(]stash tab \"(.*)[\"]; position: left ([0-9]*), top ([0-9]*)[)](.*)");
         Regex poeTradeCurrencyRegex = new Regex("@(.*) (.*): Hi, I'd like to buy your (.*) for my (.*) in (.*).(.*)");
 
+        //English Trades
+        Regex poeTradeRegexENG = new Regex("@(.*) (.*): Hi, I would like to buy your (.*) listed for (.*) in (.*) [(]stash tab \"(.*)[\"]; position: left ([0-9]*), top ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexENG = new Regex("@(.*) (.*): Hi, I would like to buy your (.*) listed for (.*) in (.*)");
+        Regex poeTradeUnpricedRegexENG = new Regex("@(.*) (.*): Hi, I would like to buy your (.*) in (.*) [(]stash tab \"(.*)[\"]; position: left ([0-9]*), top ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexENG = new Regex("@(.*) (.*): Hi, I'd like to buy your (.*) for my (.*) in (.*).(.*)");
+        //Portuguese Trades
+        Regex poeTradeRegexPOR = new Regex("@(.*) (.*): Olá, eu gostaria de comprar seu (.*) listado por (.*) na (.*) [(]aba do baú: \"(.*)[\"]; posição: esquerda ([0-9]*), topo ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexPOR = new Regex("@(.*) Olá, eu gostaria de comprar seu (.*) listado por (.*) na (.*)");
+        Regex poeTradeUnpricedRegexPOR = new Regex("@(.*) (.*): Olá, eu gostaria de comprar o seu item (.*) na (.*) [(]aba do baú: \"(.*)[\"]; posição: esquerda ([0-9]*), topo ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexPOR = new Regex("@(.*) (.*): Olá, eu gostaria de comprar seu (.*) por meu(s) (.*) na (.*).(.*)");
+        //Russian Trades
+        Regex poeTradeRegexRUS = new Regex("@(.*) (.*): Здравствуйте, хочу купить у вас (.*) за (.*) в лиге (.*) [(]секция \"(.*)[\"]; позиция: ([0-9]*) столбец, ([0-9]*) ряд[)](.*)");
+        Regex poeTradeNoLocationRegexRUS = new Regex("@(.*) (.*): Здравствуйте, хочу купить у вас (.*) за (.*) в лиге (.*)");
+        Regex poeTradeUnpricedRegexRUS = new Regex("@(.*) (.*): Здравствуйте, хочу купить у вас (.*) в лиге (.*) [(]секция \"(.*)[\"]; позиция: ([0-9]*) столбец, ([0-9]*) ряд[)](.*)");
+        Regex poeTradeCurrencyRegexRUS = new Regex("@(.*) (.*): Здравствуйте, хочу купить у вас (.*) за (.*) в лиге (.*).(.*)");
+        //Thai Trades
+        Regex poeTradeRegexTHA = new Regex("@(.*) (.*): สวัสดี เราต้องการซื้อ (.*) ที่คุณตั้งขายไว้ในราคา (.*) ในลีก (.*) [(]แท็บ \"(.*)[\"] ตำแหน่ง: ซ้าย ([0-9]*), บน ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexTHA = new Regex("@(.*) (.*): สวัสดี เราต้องการซื้อ (.*) ที่คุณตั้งขายไว้ในราคา (.*) ในลีก (.*)");
+        Regex poeTradeUnpricedRegexTHA = new Regex("@(.*) (.*): สวัสดี เราต้องการซื้อ (.*) ที่คุณตั้งขายไว้ในลีก (.*) [(]แท็บ \"(.*)[\"] ตำแหน่ง: ซ้าย ([0-9]*), บน ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexTHA = new Regex("@(.*) (.*): สวัสดี เราต้องการแลก (.*) ของเรากับ (.*) ของคุณในลีก (.*).(.*)");
+        //German Trades
+        Regex poeTradeRegexGER = new Regex("@(.*) (.*): Hi, ich möchte '(.*)' zum angebotenen Preis von (.*) in der (.*)-Liga kaufen [(]Truhenfach \"(.*)[\"]; Position: ([0-9]*) von links, ([0-9]*) von oben[)](.*)");
+        Regex poeTradeNoLocationRegexGER = new Regex("@(.*) (.*): Hi, ich möchte '(.*)' zum angebotenen Preis von (.*) in der (.*)-Liga kaufen");
+        Regex poeTradeUnpricedRegexGER = new Regex("@(.*) (.*): Hi, ich möchte '(.*)' in der (.*)-Liga kaufen [(]Truhenfach \"(.*)[\"]; Position: ([0-9]*) von links, ([0-9]*) von oben[)](.*)");
+        Regex poeTradeCurrencyRegexGER = new Regex("@(.*) (.*): Hi, ich möchte dein (.*) für mein (.*) in der (.*)-Liga kaufen(.*)");
+        //French Trades
+        Regex poeTradeRegexFRE = new Regex("@(.*) (.*): Bonjour, je souhaiterais t'acheter (.*) pour (.*) dans la ligue (.*) [(]onglet de réserve \"(.*)[\"] ; ([0-9]*)e en partant de la gauche, ([0-9]*)e en partant du haut[)](.*)");
+        Regex poeTradeNoLocationRegexFRE = new Regex("@(.*) (.*): Bonjour, je souhaiterais t'acheter (.*) pour (.*) dans la ligue (.*)");
+        Regex poeTradeUnpricedRegexFRE = new Regex("@(.*) (.*): Bonjour, je souhaiterais t'acheter (.*) dans la ligue (.*) [(]onglet de réserve \"(.*)[\"] ; ([0-9]*)e en partant de la gauche, ([0-9]*)e en partant du haut[)](.*)");
+        Regex poeTradeCurrencyRegexFRE = new Regex("@(.*) (.*): Salut, je voudrais t'acheter (.*) contre (.*) [(]ligue (.*)[)](.*)");
+        //Spanish Trades
+        Regex poeTradeRegexSPA = new Regex("@(.*) (.*): Hola, quisiera comprar tu (.*) listado por (.*) en (.*) [(]pestaña de alijo \"(.*)[\"]; posición: izquierda ([0-9]*), arriba ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexSPA = new Regex("@(.*) (.*): Hola, quisiera comprar tu (.*) listado por (.*) en (.*)");
+        Regex poeTradeUnpricedRegexSPA = new Regex("@(.*) (.*): Hola, quisiera comprar tu (.*) en (.*) [(]pestaña de alijo \"(.*)[\"]; posición: izquierda ([0-9]*), arriba ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexSPA = new Regex("@(.*) (.*): Hola, quiero comprar tu[(]s[)] (.*) por mi[(]s[)] (.*) en la liga (.*).(.*)");
+        //Japanese Trades ; Add exception for group order as league is first
+        Regex poeTradeRegexJAP = new Regex("@(.*) (.*): こんにちは、(.*) リーグで (.*) で売っている、あなたの (.*) を購入したいです [(]スタッシュタブ \"(.*)[\"]; 位置: 左から ([0-9]*), 上から ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexJAP = new Regex("@(.*) (.*): こんにちは、(.*) リーグで (.*) で売っている、あなたの (.*) を購入したいです");
+        Regex poeTradeUnpricedRegexJAP = new Regex("@(.*) (.*): こんにちは、(.*) リーグであなたの (.*) を購入したいです [(]スタッシュタブ \"(.*)[\"]; 位置: 左から ([0-9]*), 上から ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexJAP = new Regex("@(.*) (.*): こんにちは、私は(.*)であなたの(.*)を私の(.*)で購入したいです。(.*)");
+        //Korean Trades ; Add exception for group order as league is second and price first
+        Regex poeTradeRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 올려놓은 (.*) 리그의 (.*)[(]을[)]를 구매하고 싶습니다 [(]보관함 탭 \"(.*)[\"], 위치: 왼쪽 ([0-9]*), 상단 ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 올려놓은 (.*) 리그의 (.*)[(]을[)]를 구매하고 싶습니다");
+        Regex poeTradeUnpricedRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 리그의 (.*)[(]을[)]를 구매하고 싶습니다 [(]보관함 탭 \"(.*)[\"], 위치: 왼쪽 ([0-9]*), 상단 ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 리그의 (.*)[(]을[)]를 (.*)[(]으[)]로 구매하고 싶습니다(.*)");
+
+        //PoEAPP (DEPRECATED)
         Regex poeAppRegEx = new Regex("@(.*) (.*): wtb (.*) listed for (.*) in (.*) [(]stash \"(.*)[\"]; left ([0-9]*), top ([0-9]*)[)](.*)");
         Regex poeAppUnpricedRegex = new Regex("@(.*) (.*): wtb (.*) in (.*) [(]stash \"(.*)[\"]; left ([0-9]*), top ([0-9]*)[)](.*)");
         Regex poeAppCurrencyRegex = new Regex("@(.*) (.*): I'd like to buy your (.*) for my (.*) in (.*).(.*)");
-
 
 
         // Constructor
@@ -135,6 +183,150 @@ namespace TraderForPoe
 
         private void ParseWhisper(string whisper)
         {
+            if (poeTradeRegexENG.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexENG;
+            }
+            else if (poeTradeRegexPOR.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexPOR;
+            }
+            else if (poeTradeRegexRUS.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexRUS;
+            }
+            else if (poeTradeRegexTHA.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexTHA;
+            }
+            else if (poeTradeRegexGER.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexGER;
+            }
+            else if (poeTradeRegexFRE.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexFRE;
+            }
+            else if (poeTradeRegexSPA.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexSPA;
+            }
+            else if (poeTradeRegexJAP.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexJAP;
+            }
+            /*else if (poeTradeRegexKOR.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexKOR;
+            }*/
+            else if (poeTradeUnpricedRegexENG.IsMatch(whisper) && !whisper.Contains("listed for"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexENG;
+            }
+            else if (poeTradeUnpricedRegexPOR.IsMatch(whisper) && !whisper.Contains("listado por"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexPOR;
+            }
+            else if (poeTradeUnpricedRegexRUS.IsMatch(whisper) && !whisper.Contains("Сфера") && !whisper.Contains("сфера"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexRUS;
+            }
+            else if (poeTradeUnpricedRegexTHA.IsMatch(whisper) && !whisper.Contains("ที่คุณตั้งขายไว้ในราคา"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexTHA;
+            }
+            else if (poeTradeUnpricedRegexGER.IsMatch(whisper) && !whisper.Contains("angebotenen"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexGER;
+            }
+            else if (poeTradeUnpricedRegexFRE.IsMatch(whisper) && !whisper.Contains("pour"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexFRE;
+            }
+            else if (poeTradeUnpricedRegexSPA.IsMatch(whisper) && !whisper.Contains("listado por"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexSPA;
+            }
+            else if (poeTradeUnpricedRegexJAP.IsMatch(whisper) && !whisper.Contains("で売っている"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexJAP;
+            }
+            else if (poeTradeUnpricedRegexKOR.IsMatch(whisper))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexKOR;
+            }
+            else if (poeTradeNoLocationRegexENG.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexENG;
+            }
+            else if (poeTradeNoLocationRegexPOR.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexPOR;
+            }
+            else if (poeTradeNoLocationRegexRUS.IsMatch(whisper) && !whisper.Contains("Сфера") && !whisper.Contains("сфера"))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexRUS;
+            }
+            else if (poeTradeNoLocationRegexTHA.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexTHA;
+            }
+            else if (poeTradeNoLocationRegexGER.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexGER;
+            }
+            else if (poeTradeNoLocationRegexFRE.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexFRE;
+            }
+            else if (poeTradeNoLocationRegexSPA.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexSPA;
+            }
+            else if (poeTradeNoLocationRegexJAP.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexJAP;
+            }
+            else if (poeTradeNoLocationRegexKOR.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexKOR;
+            }
+            else if (poeTradeCurrencyRegexENG.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexENG;
+            }
+            else if (poeTradeCurrencyRegexPOR.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexPOR;
+            }
+            else if (poeTradeCurrencyRegexRUS.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexRUS;
+            }
+            else if (poeTradeCurrencyRegexTHA.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexTHA;
+            }
+            else if (poeTradeCurrencyRegexGER.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexGER;
+            }
+            else if (poeTradeCurrencyRegexFRE.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexFRE;
+            }
+            else if (poeTradeCurrencyRegexSPA.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexSPA;
+            }
+            else if (poeTradeCurrencyRegexJAP.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexJAP;
+            }
+            else if (poeTradeCurrencyRegexKOR.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexKOR;
+            }
 
             if (poeTradeRegex.IsMatch(whisper))
             {
@@ -172,7 +364,7 @@ namespace TraderForPoe
 
                 }
             }
-            else if (poeTradeUnpricedRegex.IsMatch(whisper) && !whisper.Contains("listed for"))
+            else if (poeTradeUnpricedRegex.IsMatch(whisper))
             {
                 MatchCollection matches = Regex.Matches(whisper, poeTradeUnpricedRegex.ToString());
 
