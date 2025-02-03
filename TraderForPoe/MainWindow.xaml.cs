@@ -100,30 +100,30 @@ namespace TraderForPoe
 
 		private void CheckForClientTxt()
 		{
-			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Grinding Gear Games\Path of Exile\logs\Client.txt")))
+			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Grinding Gear Games\Path of Exile 2\logs\Client.txt")))
 			{
-				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Grinding Gear Games\Path of Exile\logs\Client.txt");
+				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Grinding Gear Games\Path of Exile 2\logs\Client.txt");
 				Settings.Default.Save();
 				return;
 			}
 
-			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Steam\steamapps\common\Path of Exile\logs\Client.txt")))
+			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Steam\steamapps\common\Path of Exile 2\logs\Client.txt")))
 			{
-				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Steam\steamapps\common\Path of Exile\logs\Client.txt");
+				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Steam\steamapps\common\Path of Exile 2\logs\Client.txt");
 				Settings.Default.Save();
 				return;
 			}
 
-			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Grinding Gear Games\Path of Exile\logs\Client.txt")))
+			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Grinding Gear Games\Path of Exile 2\logs\Client.txt")))
 			{
-				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Grinding Gear Games\Path of Exile\logs\Client.txt");
+				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Grinding Gear Games\Path of Exile 2\logs\Client.txt");
 				Settings.Default.Save();
 				return;
 			}
 
-			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Steam\steamapps\common\Path of Exile\logs\Client.txt")))
+			if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Steam\steamapps\common\Path of Exile 2\logs\Client.txt")))
 			{
-				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Steam\steamapps\common\Path of Exile\logs\Client.txt");
+				Settings.Default.PathToClientTxt = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Steam\steamapps\common\Path of Exile 2\logs\Client.txt");
 				Settings.Default.Save();
 				return;
 			}
@@ -211,12 +211,12 @@ namespace TraderForPoe
 			if (strClipboard.StartsWith("@"))
 			{
 				// Get a handle to POE. The window class and window name were obtained using the Spy++ tool.
-				IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+				IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
 				// Verify that POE is a running process.
 				if (poeHandle == IntPtr.Zero)
 				{
 					// Show message box if POE is not running
-					MessageBox.Show("Path of Exile is not running.");
+					MessageBox.Show("Path of Exile 2 is not running.");
 					return;
 				}
 
@@ -408,7 +408,7 @@ namespace TraderForPoe
 								if (line.Contains(" @"))
 								{
 									// Get a handle to POE. The window class and window name were obtained using the Spy++ tool.
-									IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+									IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
 
 									// Verify that POE is a running process.
 									if (poeHandle != IntPtr.Zero)
@@ -512,7 +512,7 @@ namespace TraderForPoe
 		{
 			if (Settings.Default.HideIfPoeNotForeGround)
 			{
-				if (GetForegroundWindow() != FindWindow("POEWindowClass", "Path of Exile"))
+				if (GetForegroundWindow() != FindWindow("POEWindowClass", "Path of Exile 2"))
 					Hide();
 				else
 					Show();

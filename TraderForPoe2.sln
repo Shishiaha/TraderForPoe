@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderForPoe", "TraderForPoe\TraderForPoe.csproj", "{B3B9FBD1-137A-419F-9802-3033F37B7565}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraderForPoe2", "TraderForPoe\TraderForPoe2.csproj", "{B3B9FBD1-137A-419F-9802-3033F37B7565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

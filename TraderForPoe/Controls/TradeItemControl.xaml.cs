@@ -281,13 +281,13 @@ namespace TraderForPoe
         private void SendInputToPoe(string input)
         {
             // Get a handle to POE. The window class and window name were obtained using the Spy++ tool.
-            IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+            IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
 
             // Verify that POE is a running process.
             if (poeHandle == IntPtr.Zero)
             {
                 // Show message box if POE is not running
-                MessageBox.Show("Path of Exile is not running.");
+                MessageBox.Show("Path of Exile 2 is not running.");
                 return;
             }
 
@@ -334,12 +334,12 @@ namespace TraderForPoe
         private void ClickWhisperCustomer(object sender, RoutedEventArgs e)
         {
             // Get a handle to POE. The window class and window name were obtained using the Spy++ tool.
-            IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+            IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
 
             // Verify that POE is a running process.
             if (poeHandle == IntPtr.Zero)
             {
-                MessageBox.Show("Path of Exile is not running.");
+                MessageBox.Show("Path of Exile 2 is not running.");
                 return;
             }
             InputSimulator iSim = new InputSimulator();
@@ -374,12 +374,12 @@ namespace TraderForPoe
         private void ClickSearchItem(object sender, RoutedEventArgs e)
         {
             // Get a handle to POE. The window class and window name were obtained using the Spy++ tool.
-            IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+            IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
 
             // Verify that POE is a running process.
             if (poeHandle == IntPtr.Zero)
             {
-                MessageBox.Show("Path of Exile is not running.");
+                MessageBox.Show("Path of Exile 2 is not running.");
                 return;
             }
 

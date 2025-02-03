@@ -54,7 +54,7 @@ namespace TraderForPoe.Windows
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
-        IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+        IntPtr poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
 
         // Needed to determine if poe window location changed
         private IntPtr hWinEventHook;
@@ -68,7 +68,7 @@ namespace TraderForPoe.Windows
             // Verify that POE is a running process.
             if (poeHandle == IntPtr.Zero)
             {
-                MessageBox.Show("Path of Exile is not running.");
+                MessageBox.Show("Path of Exile 2 is not running.");
                 return;
             }
 
@@ -305,7 +305,7 @@ namespace TraderForPoe.Windows
         {
             if (poeHandle == IntPtr.Zero || !IsWindow(poeHandle))
             {
-                poeHandle = FindWindow("POEWindowClass", "Path of Exile");
+                poeHandle = FindWindow("POEWindowClass", "Path of Exile 2");
                 try
                 {
                     if (poeHandle != IntPtr.Zero)
