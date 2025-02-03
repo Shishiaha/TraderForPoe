@@ -38,7 +38,7 @@
 		<TabControl Margin="2">
 			<TabItem Header="General">
 				<StackPanel>
-					<GroupBox Header="Path to Client.txt">
+					<GroupBox Header="Path to PoE 2 Client.txt">
 						<DockPanel>
 							<Button
 								HorizontalAlignment="Right"
