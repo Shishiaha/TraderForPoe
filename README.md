@@ -1,6 +1,6 @@
-# TraderForPoe
-## The tool is currently not in development
-This tool makes trading in Path of Exile easy. 
+# TraderForPoe2
+## This tool is for PoE 2 only, use PoE 1 master branch for PoE 1.
+This tool makes trading in Path of Exile 2 easy. 
 
 It parses all incoming and outgoing trade whispers and shows a notification with usefull buttons.
 
@@ -8,15 +8,14 @@ It parses all incoming and outgoing trade whispers and shows a notification with
 
 ### Features
 - Monitors the clipboard for trade whispers
-- Supports poe.trade and poeapp.com
 - Show ratio when trading currency
-- Small (1,75 MB)
+- Small (1,45 MB)
 - Standalone
 - Fast startup
 
 
 ### Download
-Download here: [TraderForPoe Releases](https://github.com/hexadezi/TraderForPoe/releases)
+Download here: [TraderForPoe Releases](https://github.com/Shishiaha/TraderForPoe/releases)
 
 ### Screenshots
 ![](https://github.com/hexadezi/TraderForPoe/blob/master/Screenshots/screen_05.PNG?raw=true "")
@@ -25,11 +24,11 @@ Download here: [TraderForPoe Releases](https://github.com/hexadezi/TraderForPoe/
 
 What things you need to run the sofware?
 - .NET Framework 4.6.1
-- Display mode has to be windowed or windowed fullscreen
+- Display mode has to be windowed or windowed fullscreen in PoE 2 settings
 
 ### Installing
 
-Just download the .exe file and execute.
+Just download the .exe file and execute, it's portable.
 
 ## License
 
