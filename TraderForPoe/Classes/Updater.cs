@@ -44,7 +44,7 @@ namespace TraderForPoe.Classes
 
             string downloadLink = updateString[1];
 
-            string newExePath = Path.GetTempPath() + "TraderForPoe.exe";
+            string newExePath = Path.GetTempPath() + "TraderForPoe2.exe";
 
             using (WebClient wc = new WebClient())
             {
@@ -55,11 +55,11 @@ namespace TraderForPoe.Classes
 
         private static void Wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            File.Delete(Path.GetTempPath() + "TraderForPoe.bak");
+            File.Delete(Path.GetTempPath() + "TraderForPoe2.bak");
 
-            File.Move(Assembly.GetEntryAssembly().Location, Path.GetTempPath() + "TraderForPoe.bak");
+            File.Move(Assembly.GetEntryAssembly().Location, Path.GetTempPath() + "TraderForPoe2.bak");
 
-            File.Move(Path.GetTempPath() + "TraderForPoe.exe", AppDomain.CurrentDomain.BaseDirectory + "TraderForPoe.exe");
+            File.Move(Path.GetTempPath() + "TraderForPoe2.exe", AppDomain.CurrentDomain.BaseDirectory + "TraderForPoe2.exe");
 
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
 
