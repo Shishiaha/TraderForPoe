@@ -144,6 +144,11 @@ namespace TraderForPoe
         Regex poeTradeNoLocationRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 올려놓은 (.*) 리그의 (.*)[(]을[)]를 구매하고 싶습니다");
         Regex poeTradeUnpricedRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 리그의 (.*)[(]을[)]를 구매하고 싶습니다 [(]보관함 탭 \"(.*)[\"], 위치: 왼쪽 ([0-9]*), 상단 ([0-9]*)[)](.*)");
         Regex poeTradeCurrencyRegexKOR = new Regex("@(.*) (.*): 안녕하세요, (.*) 리그의 (.*)[(]을[)]를 (.*)[(]으[)]로 구매하고 싶습니다(.*)");
+        //Chinese Trades ; Add exception for group order as league is second and price first
+        Regex poeTradeRegexCHI = new Regex("@(.*) (.*): 你好，我想購買 (.*) 標價 (.*) 在 (.*)[(]倉庫頁 \"(.*)[\"]; 位置: 左 ([0-9]*), 上 ([0-9]*)[)](.*)");
+        Regex poeTradeNoLocationRegexCHI = new Regex("@(.*) (.*): 你好，我想購買 (.*) 標價 (.*) 在 (.*)");
+        Regex poeTradeUnpricedRegexCHI = new Regex("@(.*) (.*): 你好，我想購買 (.*) 在 (.*) [(]倉庫頁 \"(.*)[\"]; 位置: 左 (.*), 上 ([0-9]*)[)](.*)");
+        Regex poeTradeCurrencyRegexCHI = new Regex("@(.*) (.*): 嗨，我想在(.*)用(.*)石購買你的(.*)(.*)");
 
         //PoEAPP (DEPRECATED)
         Regex poeAppRegEx = new Regex("@(.*) (.*): wtb (.*) listed for (.*) in (.*) [(]stash \"(.*)[\"]; left ([0-9]*), top ([0-9]*)[)](.*)");
@@ -215,6 +220,10 @@ namespace TraderForPoe
             {
                 poeTradeRegex = poeTradeRegexJAP;
             }
+            else if (poeTradeRegexCHI.IsMatch(whisper))
+            {
+                poeTradeRegex = poeTradeRegexCHI;
+            }
             /*else if (poeTradeRegexKOR.IsMatch(whisper))
             {
                 poeTradeRegex = poeTradeRegexKOR;
@@ -250,6 +259,10 @@ namespace TraderForPoe
             else if (poeTradeUnpricedRegexJAP.IsMatch(whisper) && !whisper.Contains("で売っている"))
             {
                 poeTradeUnpricedRegex = poeTradeUnpricedRegexJAP;
+            }
+            else if (poeTradeUnpricedRegexCHI.IsMatch(whisper) && !whisper.Contains("標價"))
+            {
+                poeTradeUnpricedRegex = poeTradeUnpricedRegexCHI;
             }
             else if (poeTradeUnpricedRegexKOR.IsMatch(whisper))
             {
@@ -287,6 +300,10 @@ namespace TraderForPoe
             {
                 poeTradeNoLocationRegex = poeTradeNoLocationRegexJAP;
             }
+            else if (poeTradeNoLocationRegexCHI.IsMatch(whisper))
+            {
+                poeTradeNoLocationRegex = poeTradeNoLocationRegexCHI;
+            }
             else if (poeTradeNoLocationRegexKOR.IsMatch(whisper))
             {
                 poeTradeNoLocationRegex = poeTradeNoLocationRegexKOR;
@@ -322,6 +339,10 @@ namespace TraderForPoe
             else if (poeTradeCurrencyRegexJAP.IsMatch(whisper))
             {
                 poeTradeCurrencyRegex = poeTradeCurrencyRegexJAP;
+            }
+            else if (poeTradeCurrencyRegexCHI.IsMatch(whisper))
+            {
+                poeTradeCurrencyRegex = poeTradeCurrencyRegexCHI;
             }
             else if (poeTradeCurrencyRegexKOR.IsMatch(whisper))
             {
