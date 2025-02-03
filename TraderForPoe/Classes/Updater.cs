@@ -55,9 +55,9 @@ namespace TraderForPoe.Classes
 
         private static void Wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            File.Delete(Path.GetTempPath() + "TraderForPoe2.bak");
+            File.Delete(Path.GetTempPath() + "TraderForPoe.bak");
 
-            File.Move(Assembly.GetEntryAssembly().Location, Path.GetTempPath() + "TraderForPoe2.bak");
+            File.Move(Assembly.GetEntryAssembly().Location, Path.GetTempPath() + "TraderForPoe.bak");
 
             File.Move(Path.GetTempPath() + "TraderForPoe2.exe", AppDomain.CurrentDomain.BaseDirectory + "TraderForPoe2.exe");
 
