@@ -1,5 +1,5 @@
 # TraderForPoe
-## The tool is currently not in development
+## This is for PoE 1, check the TraderForPoe2 branch if you want to use it for PoE 2.
 This tool makes trading in Path of Exile easy. 
 
 It parses all incoming and outgoing trade whispers and shows a notification with usefull buttons.
@@ -16,7 +16,7 @@ It parses all incoming and outgoing trade whispers and shows a notification with
 
 
 ### Download
-Download here: [TraderForPoe Releases](https://github.com/hexadezi/TraderForPoe/releases)
+Download here: [TraderForPoe Releases](https://github.com/Shishiaha/TraderForPoe/releases)
 
 ### Screenshots
 ![](https://github.com/hexadezi/TraderForPoe/blob/master/Screenshots/screen_05.PNG?raw=true "")
